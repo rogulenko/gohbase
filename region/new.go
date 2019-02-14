@@ -28,7 +28,7 @@ func NewClient(ctx context.Context, addr string, ctype ClientType,
 	c := &client{
 		addr:          addr,
 		conn:          conn,
-		rpcs:          make(chan hrpc.Call),
+		rpcs:          make(chan hrpc.Call, queueSize),
 		done:          make(chan struct{}),
 		sent:          make(map[uint32]hrpc.Call),
 		rpcQueueSize:  queueSize,
